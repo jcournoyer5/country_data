@@ -1,5 +1,12 @@
 class Country
-    attr_accessor :population, :capital, :region
-    #what you should be able to overwrite
+    attr_reader :name, :population, :capital, :region
+    #what you cannot overwrite
     
-end   
+    def initialize(hash)
+        hash.each do |k,v|
+        @k = v
+    end
+    end
+    #
+end 
+
