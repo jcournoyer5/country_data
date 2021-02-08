@@ -24,7 +24,7 @@ class Country
 
 end
 
-require "httparty"
+
 
 
 class Api
