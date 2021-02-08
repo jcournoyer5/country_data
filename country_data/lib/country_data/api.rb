@@ -1,32 +1,3 @@
-class Country
-    attr_reader :name, :population, :capital, :region
-    #what you cannot overwrite
-    
-    @@all = []
-    
-    def initialize(hash)
-        hash.each do |k,v|
-        @k = v
-    end
-    @@all << self
-    end
-    
-    def save
-        @@all << self
-    end
-    
-    def self.all
-        @@all
-    end    
-
-       
-
-
-end
-
-
-
-
 class Api
     
     attr_accessor :url
@@ -48,6 +19,7 @@ class Api
     } 
     
         country = Country.new(country_hash)
+        puts country.name
     end
     
 end
@@ -56,7 +28,7 @@ api = Api.new("https://restcountries.eu/rest/v2/all")
 
 api.get_country_data
 
-puts Country.all
+
 
 
 

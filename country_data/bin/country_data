@@ -4,4 +4,6 @@ require "bundler/setup"
 require "cli"
 
 
+api = Api.new("https://restcountries.eu/rest/v2/all")  
 
+api.get_country_data
