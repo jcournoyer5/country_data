@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Enter the country name you would like to know more about or "world" to get data for every country. 
 
 ## Development
 

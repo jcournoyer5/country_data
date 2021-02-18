@@ -1,3 +1,4 @@
+require "country_data/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "country_data"
