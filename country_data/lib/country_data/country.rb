@@ -4,12 +4,12 @@ class Country
     @@all = []
   
     def initialize(hash)
-        self.name = hash[:name]
-        self.population = hash[:population]
-        self.capital = hash[:capital]
-        self.region = hash[:region],
-        self.lat_long = hash[:lat_long] #{country["latlng"][0]}, #{country["latlng"][1]}",
-        self.currencies = hash[:currencies]
+        hash.each do |k,v|
+            # self is an instance => send has as many args as we pass, first one is a method, the rest are the args the method we pass as the first arg as arguments (ask me if you have more questions on this)
+            if self.respond_to?(("#{k}=")) # if the key is a valid attribute
+                self.send("#{k}=", v) # set the attribute equal to the value in the hash
+            end
+        end
         save
     end
 
