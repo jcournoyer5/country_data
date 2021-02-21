@@ -15,9 +15,7 @@ class CLI
     def get_country_by_name
       puts "Please type the country name then enter to search"
       input = gets.strip
-      # use country method to find by name
       country = Country.find_by_name(input)
-      # if we get something back we print out info, otherwise we get an error message and then run the loop again
       if country 
         print_country_info(country)
       else 
@@ -26,7 +24,6 @@ class CLI
     end
 
     def print_country_info(country)
-      #print out basic info
       country.get_country_info
         puts "would you like more info?"
         get_more_info(country)
@@ -57,10 +54,7 @@ class CLI
       
       input = nil
 
-      # The user should select from a series of options to understand
-      # countries better.  They can select from a list or select by name
-      # When they are done, they can type 'exit' 
-      while input != "exit" # continue until they type exit
+      while input != "exit" 
         puts "If you would like to select from the list type 'list', if you would like to search by name please type 'name'. To exit, type 'exit'"
         input = gets.strip.downcase
 
@@ -72,7 +66,7 @@ class CLI
         elsif input == "name"
           
           get_country_by_name
-        elsif input == "exit"
+        elsif input == "exit" 
           
           puts "goodbye"
           break
