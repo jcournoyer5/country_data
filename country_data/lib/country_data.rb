@@ -1,7 +1,3 @@
-require "country_data/version"
-require "country_data/cli"
-
-module CountryData
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require "bundler/setup"
+Bundler.require(:default)
+require_all "lib"

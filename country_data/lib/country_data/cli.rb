@@ -1,35 +1,85 @@
+
 class CLI
-    
-    
-    def get_country_data_by_name(country_name, country_api)
-      if country_name != "world"
-        country = country_api.get_country_data(country_name)
+
+    def get_country_data_by_index
+      puts "please select a country by the number: "
+      input = gets.strip
+     
+      if input.to_i >= 0 && input.to_i <= Country.all.length 
+        
+        country = Country.all[input.to_i - 1]
+        print_country_info(country)
       end
-    end  
-    
-    
-    
-    
-    def run #in control of running everything in this app
-      puts "Welcome to Country Data Library"
-      # country_api = Api.new("https://restcountries.eu/rest/v2/all")
-      country_name = nil
-      while country_name != "exit" 
-        puts "Which country would you like to know about? or type 'world' for all country data"
-        country_name = gets.strip.downcase
-        if country_name != nil && country_name != "exit" && country_name != "world"
-          country_api.get_country_data
-        elsif country_name == "world"
-         Country.all
-         
-        else
-          return
-        end    
-    
-    
-      end
-    
-    puts "Thank you for checking out our Country Data Library!"
     end
-    
+
+    def get_country_by_name
+      puts "Please type the country name then enter to search"
+      input = gets.strip
+      # use country method to find by name
+      country = Country.find_by_name(input)
+      # if we get something back we print out info, otherwise we get an error message and then run the loop again
+      if country 
+        print_country_info(country)
+      else 
+        puts "oops can't find that country try again please!"
+      end 
+    end
+
+    def print_country_info(country)
+      #print out basic info
+      country.get_country_info
+        puts "would you like more info?"
+        get_more_info(country)
+    end
+
+    def get_more_info(country)
+      #check input to see if they should get additional info 
+      input = gets.strip 
+      if input == "yes" ||input == "y"
+        #print extra info
+        country.extra_info
+      end
+    end
+
+    def list_countries
+      
+      Country.all.each.with_index(1) do |country, index| 
+        puts "#{index}. #{country.name}"
+      end 
+    end
+ 
+    def run 
+      puts "Welcome to Country Data Library"
+      
+      api = Api.new 
+     
+      api.get_country_data
+      
+      input = nil
+
+      # The user should select from a series of options to understand
+      # countries better.  They can select from a list or select by name
+      # When they are done, they can type 'exit' 
+      while input != "exit" # continue until they type exit
+        puts "If you would like to select from the list type 'list', if you would like to search by name please type 'name'. To exit, type 'exit'"
+        input = gets.strip.downcase
+
+        if input == "list"
+          
+          list_countries
+         
+          get_country_data_by_index
+        elsif input == "name"
+          
+          get_country_by_name
+        elsif input == "exit"
+          
+          puts "goodbye"
+          break
+        else 
+          
+          puts "oops, i don't know what you want to do :(. Invalid input of '#{input}'"
+        end
+      end 
+    end 
 end   

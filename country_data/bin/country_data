@@ -1,9 +1,6 @@
 #!/usr/bin/env ruby
-
 require "bundler/setup"
-require "cli"
+require_relative "../lib/country_data"
 
-
-api = Api.new("https://restcountries.eu/rest/v2/all")  
-
-api.get_country_data
+cli = CLI.new 
+cli.run
