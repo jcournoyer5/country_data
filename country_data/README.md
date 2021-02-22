@@ -1,6 +1,6 @@
 # CountryData
 
-Find out data about a country
+Find out data about a country, and more data if you're still curious about that country. 
 
 ## Installation
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-Enter the country name you would like to know more about or "world" to get data for every country. 
+Either use the index to select a country from the list, or search by country name to return data about that country. If you're still curious about that country you can get more info. 
 
 ## Development
 
